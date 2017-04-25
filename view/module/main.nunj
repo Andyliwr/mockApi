@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html class="single-screen">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="/static/common/bootstrap/scss/bootstrap-system.css">
+    <link rel="stylesheet" href="/static/common/plugins/validation/css/validationEngine.jquery.css">
+    <link rel="stylesheet" href="/static/common/css/my.css">
+    <style>
+        .btns-wrap dt{ padding: 5px 0; }
+        .btns-wrap dd{ margin-bottom: 10px; }
+        #interfaceTabs [aria-expanded="true"]{
+            background: #FFF; color: #333;
+        }
+    </style>
+    <link rel="stylesheet" href="/static/common/json/s.css">
+    <script src="/static/common/bootstrap/js/jquery.min.js"></script>
+    <script src="/static/common/bootstrap/js/bootstrap.js"></script>
+    <script src="/static/common/js/toolbar.js"></script>
+    <script src="/static/common/plugins/jQuery.cookie/jQuery.cookie.js"></script>
+
+    <script src="/static/common/plugins/validation/js/jquery.validationEngine-zh_CN.js"></script>
+    <script src="/static/common/plugins/validation/js/jquery.validationEngine.js"></script>
+    <script type="text/javascript" src="/static/common/plugins/artdialog/jquery.artDialog.js"></script>
+    {% block js %}{% endblock %}
+    <script type="text/javascript">
+        $(function () {
+            function showDemoDialog(withTitle) {
+                var opts = {
+                    title: withTitle ? '详情统计' : false,
+                    //title: false,
+                    width: 500,
+                    height: 220,
+                    padding: '0 20px',
+                    isOuterBoxShadow: false,
+                    //isClose: false,
+                    content: '<center>hello world</center><p>API 文档见http://lab.seaning.com/_doc/API.html</p>',
+                    lock: true,
+                    fixed: true,
+                };
+                var btnOpt;
+                if (withTitle) {
+                    btnOpt = {
+                        button: [
+                            {
+                                name: '常规按钮',
+                                callback: function () {
+                                    console.log('常规按钮..');
+                                }
+                            },
+                            {
+                                name: '蓝色按钮',
+                                className: 'btn-process',
+                                callback: function () {
+                                    this.content('你同意了').time(2);
+                                    return false;
+                                },
+                                focus: true
+                            },
+                            {
+                                name: '红色按钮',
+                                className: 'btn-important',
+                                callback: function () {
+                                    alert('你不同意')
+                                }
+                            },
+                            {
+                                name: '被禁用按钮',
+                                disabled: true
+                            }
+                        ]
+                    }
+                } else {
+                    btnOpt = {
+                        cancel: function () {
+                        },
+                        cancelVal: '关闭',
+                        okCssClass: 'btn-save',
+                        ok: function () {
+                            console.log('ok..');
+                        },
+                        okVal: '确认',
+                    }
+                }
+                $.dialog($.extend(opts, btnOpt));
+            }
+
+            $("#btn-open-dialog").click(function() {
+                showDemoDialog(true);
+            });
+            $("#btn-open-dialog-without-titlebar").click(function() {
+                showDemoDialog();
+            });
+            $('#formId').validationEngine();
+            $('.J_common_success').click(function() {
+                $.gmMessage('已成功上架该产品', 'success', 3)
+            })
+            $('.J_common_info').click(function() {
+                $.gmMessage('已成功上架该产品', 'info', 3)
+            })
+            $('.J_common_danger').click(function() {
+                $.gmMessage('已成功上架该产品', 'danger', 2)
+            })
+            // $('.page-content-inner').scrollTop(3811);
+        });
+    </script>
+    <title>
+        {{ title }}    </title>
+</head>
+<body>
+<div class="page-wrapper">
+    {% include "./sidebar.nunj" %}
+    <div class="page-content-wrapper">
+        {% include "./top.nunj" %}
+        <div class="page-content-outer">
+            <div class="page-content-inner">
+                <div class="page-content">
+                    {% include "./breadcumn.nunj" %}
+                    <div class="page-main">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+                <div class="page-footer">
+                    <ul class="pull-left">
+                        <li>开户 mock server</li>
+
+                        <li><a href="//testm.10jqka.com.cn/kh/khdoc/index.html">开户 API Document</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

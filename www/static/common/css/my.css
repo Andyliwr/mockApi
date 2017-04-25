@@ -1,0 +1,26 @@
+.project-icon, .project-gray-icon, .interface-icon, .interface-gray-icon, .system-icon, .system-gray-icon{
+    background: url(../image/sprite01.png) no-repeat;
+    display: inline-block;
+    width: 30px !important;
+    height: 30px;
+    position: absolute;
+    left: 15px;
+}
+.project-icon{
+    background-size: 90px 90px;
+    background-position: 0 0;
+}
+.project-gray-icon{
+
+}
+.interface-icon{
+
+}
+.interface-gray-icon{
+
+}
+.system-icon{
+
+}
+.system-gray-icon{
+}

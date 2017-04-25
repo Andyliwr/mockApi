@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>JSONEditor | Custom Ace</title>
+
+    <!-- load a custom version of Ace editor -->
+    <script src="https://cdn.bootcss.com/ace/1.2.6/ace.js"></script>
+
+    <!-- load the minimalist version of JSONEditor, which doesn't have Ace embedded -->
+    <link href="jsoneditor.min.css" rel="stylesheet" type="text/css">
+    <script src="jsoneditor-minimalist.min.js"></script>
+
+    <style type="text/css">
+        html{
+            height:100%;
+        }
+        body{
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+        }
+        #jsoneditor {
+            width: 59%;
+            height: 100%;
+        }
+
+        body, html {
+            font-family: "DejaVu Sans", sans-serif;
+        }
+
+        p, li {
+            width: 500px;
+            font-size: 10.5pt;
+        }
+
+        code {
+            background: #f5f5f5;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="jsoneditor"></div>
+<script src="app-min.js" type="text/javascript"></script>
+<script>
+  function getJson() {
+    try {
+      JSON.parse(codeEditor.getText());
+      return codeEditor.getText();
+    } catch (e) {
+      return false
+    }
+  }
+  function setJson(json) {
+    app.load(json);
+  }
+//  // create the editor
+//  var container = document.getElementById('jsoneditor');
+//  var options = {
+//    modes: ['text', 'code', 'tree', 'form', 'view'],
+//    mode: 'code',
+//    ace: ace,
+//    onError: function (err) {
+//      alert(err.toString());
+//    },
+//    onModeChange: function (newMode, oldMode) {
+//      console.log('Mode switched from', oldMode, 'to', newMode);
+//    }
+//  };
+//  var json = {
+//    'array': [1, 2, 3],
+//    'boolean': true,
+//    'null': null,
+//    'number': 123,
+//    'object': {'a': 'b', 'c': 'd'},
+//    'string': 'Hello World'
+//  };
+//  var editor = new JSONEditor(container, options, json);
+</script>
+</body>
+</html>
