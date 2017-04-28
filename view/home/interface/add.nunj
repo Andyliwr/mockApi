@@ -179,6 +179,8 @@
                 var json = $(this)[0].contentWindow.getJson();
                 json ? $('#' + toObj).val(json) : result = false;
             })
+            console.log(result);
+            alert(1);
             return result
         })
         function proxyOpenTips() {
